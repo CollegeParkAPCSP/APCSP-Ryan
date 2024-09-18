@@ -9,6 +9,7 @@ The repository is organized into folders and subfolders as follows:
 - **Unit 2**
   - **2.2**
   - **2.3**
+  - **2.4**
 - **Unit 3**
   - **3.1**
   - **3.2**
