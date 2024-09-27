@@ -11,7 +11,7 @@ class Tima(nn.Module):
         super(Tima, self).__init__()
         self.fc1 = nn.Linear(1, 10)
         self.fc2 = nn.Linear(10, 10)
-        self.fc3 = nn.Linear(10, 2)
+        self.fc3 = nn.Linear(10, 1)
         
     def forward(self, x):
         x = F.relu(self.fc1(x))
@@ -25,22 +25,30 @@ tima_model = Tima()
 criterion = nn.MSELoss()
 optimizer = optim.Adam(tima_model.parameters(), lr=0.001)
 
-for epoch in tqdm(range(500)):
-    # Training loop. Inputs are 3,4,5 and outputs are [10, 90], [10, 60], [10, 120]
-    for i in range(3, 6):
-        optimizer.zero_grad()
-        inputs = torch.tensor([i], dtype=torch.float32)
-        outputs = tima_model(inputs)
-        if i == 3:
-            loss = criterion(outputs, torch.tensor([1, 0.25], dtype=torch.float32))
-        elif i == 4:
-            loss = criterion(outputs, torch.tensor([1, 0.167], dtype=torch.float32))
-        elif i == 5:
-            loss = criterion(outputs, torch.tensor([1, 0.3], dtype=torch.float32))
-        print(f"Epoch: {epoch}, Loss: {loss.item()}")
-        loss.backward()
-        optimizer.step()
-
+for epoch in tqdm(range(100)):
+    # First pick a random integer
+    num = random.randint(1, 100)
+    num = torch.tensor([num])
+    num = num.float()
+    
+    # Model forward pass
+    rotate_num = tima_model(num)
+    
+    # Rotation should be 360/n
+    target = torch.tensor([360/num])
+    
+    # normalize the target max = 360
+    target = target / 360
+    
+    # Calculate loss
+    loss = criterion(rotate_num, target)
+    print(f"Epoch: {epoch}, Loss: {loss.item()}")
+    
+    # Backward pass
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    
 tima_sqr = turtle.Turtle()
 tima_tri = turtle.Turtle()
 tima_pen = turtle.Turtle()
@@ -67,14 +75,16 @@ def draw_sqr():
     tima_sqr.begin_fill()
         
     with torch.no_grad():
-        move_num, rotate_num = tima_model(torch.tensor([4.0]))
-        move_num = move_num.item() * 40
+        rotate_num = tima_model(torch.tensor([4.0]))
+        
+        # denormalize the rotation
         rotate_num = rotate_num.item() * 360
-        print(f"Move: {move_num}, Rotate: {rotate_num}")
+        
+        print(f"Rotate: {rotate_num}")
     
     for i in range(4):
         tima_sqr.pensize(4)
-        tima_sqr.forward(move_num)
+        tima_sqr.forward(50)
         tima_sqr.right(rotate_num)
         tima_sqr.color(colors[i])
         tima_sqr.end_fill()
@@ -84,15 +94,17 @@ def draw_tri():
     tima_tri.begin_fill()
     
     with torch.no_grad():
-        move_num, rotate_num = tima_model(torch.tensor([3.0]))
-        move_num = move_num.item() * 40
+        rotate_num = tima_model(torch.tensor([3.0]))
+        
+        # denormalize the rotation
         rotate_num = rotate_num.item() * 360
-        print(f"Move: {move_num}, Rotate: {rotate_num}")
+        
+        print(f"Rotate: {rotate_num}")
         
     for _ in range(3):
         tima_tri.pensize(10)
         tima_tri.color((0.5, 0, 0.5))
-        tima_tri.forward(move_num)
+        tima_tri.forward(50)
         tima_tri.right(rotate_num)
         tima_tri.end_fill()
         
@@ -101,14 +113,16 @@ def draw_pen():
     tima_pen.begin_fill()
     
     with torch.no_grad():
-        move_num, rotate_num = tima_model(torch.tensor([5.0]))
-        move_num = move_num.item() * 40
+        rotate_num = tima_model(torch.tensor([5.0]))
+        
+        # denormalize the rotation
         rotate_num = rotate_num.item() * 360
-        print(f"Move: {move_num}, Rotate: {rotate_num}")
+        
+        print(f"Rotate: {rotate_num}")
         
     for i in range(5):
         tima_pen.pensize(1 + i)
-        tima_pen.forward(move_num)
+        tima_pen.forward(50)
         tima_pen.right(rotate_num)
         tima_pen.end_fill()
         
