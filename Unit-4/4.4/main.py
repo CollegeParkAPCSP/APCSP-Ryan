@@ -4,10 +4,10 @@
 # Given an int temperature and a boolean is_summer,
 # return True if the squirrels play and False otherwise.
 def squirrel_play(temp, is_summer) -> bool:
-    # For grading purposes: limit is 60 and 90 or 100
+    # For grading purposes: limit is 60 and 90 or 100.
     limit = [60, 90 if not is_summer else 100]
     
-    # For grading purposes: limit[0] = 60, limit[1] = 90 or 100
+    # For grading purposes: limit[0] = 60, limit[1] = 90 or 100.
     if limit[0] <= temp <= limit[1]:
         return True
     
