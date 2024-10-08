@@ -119,17 +119,19 @@ def calc_area(shape, size):
         print("Invalid shape")
         return 0
     
+tima.color(random.random(), random.random(), random.random())
 draw_shape("square", -60, 60, 30)
-
+tima.color(random.random(), random.random(), random.random())
 draw_shape("circle", 0, 60, 15)
-
+tima.color(random.random(), random.random(), random.random())
 draw_shape("triangle", 60, 60, 10)
-
+tima.color(random.random(), random.random(), random.random())
 draw_shape("pentagon", -60, -60, 20)
-
+tima.color(random.random(), random.random(), random.random())
 draw_shape("hexagon", 0, -60, 15)
-
+tima.color(random.random(), random.random(), random.random())
 draw_shape("decagon", 60, -60, 8)
+tima.color(random.random(), random.random(), random.random())
 
 turtle.done()
 # ----- END DAY 2 -----
