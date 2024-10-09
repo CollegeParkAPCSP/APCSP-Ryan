@@ -1,10 +1,11 @@
 import turtle
 import math
 import random
+from time import sleep
 
 screen = turtle.Screen()
 screen.reset()
-screen.setworldcoordinates(-100, -100, 100, 100) # 200 x 200 (40000) square
+screen.setworldcoordinates(-400, -400, 400, 400) # 800 x 800 (640000) square
 
 tima = turtle.Turtle()
 tima.penup()
@@ -70,17 +71,6 @@ def draw_reg_decagon(x, y, turtle, size):
     turtle.penup()
     
 # ----- END DAY 1 -----
-# draw_square(-60, 60, tima, 30)
-
-# draw_circle(0, 60, tima, 15)
-
-# draw_triangle(60, 60, tima, 10)
-
-# draw_reg_pentagon(-60, -60, tima, 20)
-
-# draw_reg_hexagon(0, -60, tima, 15)
-
-# draw_reg_decagon(60, -60, tima, 8)
 
 # ----- START DAY 2 -----
 def draw_shape(shape, x, y, size):
@@ -119,19 +109,25 @@ def calc_area(shape, size):
         print("Invalid shape")
         return 0
     
-tima.color(random.random(), random.random(), random.random())
-draw_shape("square", -60, 60, 30)
-tima.color(random.random(), random.random(), random.random())
-draw_shape("circle", 0, 60, 15)
-tima.color(random.random(), random.random(), random.random())
-draw_shape("triangle", 60, 60, 10)
-tima.color(random.random(), random.random(), random.random())
-draw_shape("pentagon", -60, -60, 20)
-tima.color(random.random(), random.random(), random.random())
-draw_shape("hexagon", 0, -60, 15)
-tima.color(random.random(), random.random(), random.random())
-draw_shape("decagon", 60, -60, 8)
-tima.color(random.random(), random.random(), random.random())
+shapes_area = 0
+shapes = ["square", "circle", "pentagon", "triangle", "hexagon", "decagon"]
+for _ in range(3):
+    tima.color(random.random(), random.random(), random.random())
+    user_shape = turtle.textinput("Shape", "Enter a shape: ")
+    while user_shape not in shapes:
+        user_shape = turtle.textinput("Shape", "Enter a shape: ")
+    user_x = turtle.numinput("X", "Enter an x coordinate: ", 0, -400, 400)
+    user_y = turtle.numinput("Y", "Enter a y coordinate: ", 0, -400, 400)
+    user_size = turtle.numinput("Size", "Enter a size: ")
+    
+    shapes_area += draw_shape(user_shape, user_x, user_y, user_size)
+
+# ----- END DAY 2 -----
+
+# ----- START DAY 3 -----
+tima.goto(0, 0)
+tima.color("black")
+tima.write("Total Area: " + str(shapes_area), align="center", font=("Arial", 12, "normal"))
 
 turtle.done()
-# ----- END DAY 2 -----
+# ----- END DAY 3 -----
