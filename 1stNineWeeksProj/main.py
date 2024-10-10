@@ -115,7 +115,6 @@ for _ in range(3):
     tima.color(random.random(), random.random(), random.random())
     user_shape = turtle.textinput("Shape", "Enter a shape: ")
     user_shape = user_shape.lower() # Lower case the shape (ie: Square -> square)
-
     
     # If what the user types is not in the list, then ask again.
     while user_shape not in shapes:
