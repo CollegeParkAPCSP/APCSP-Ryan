@@ -6,6 +6,7 @@ Welcome to the APCSP repository! This repository stores files and resources for 
 
 The repository is organized into folders and subfolders as follows:
 
+- **1stNineWeeksProj**
 - **Unit 2**
   - **2.2**
   - **2.3**
@@ -20,6 +21,9 @@ The repository is organized into folders and subfolders as follows:
   - **4.1**
   - **4.2**
   - **4.3**
+  - **4.4**
+  - **4.5**
+  - **4.6**
 
 ## How to Use This Repository
 
