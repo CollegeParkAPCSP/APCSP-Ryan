@@ -92,7 +92,7 @@ def draw_shape(shape, x, y, size):
         
     return calc_area(shape, size)
         
-def calc_area(shape, size):
+def calc_area(shape: str, size):
     if shape == "square":
         return size ** 2
     elif shape == "circle":
@@ -114,8 +114,13 @@ shapes = ["square", "circle", "pentagon", "triangle", "hexagon", "decagon"]
 for _ in range(3):
     tima.color(random.random(), random.random(), random.random())
     user_shape = turtle.textinput("Shape", "Enter a shape: ")
+    user_shape = user_shape.lower() # Lower case the shape (ie: Square -> square)
+
+    
+    # If what the user types is not in the list, then ask again.
     while user_shape not in shapes:
         user_shape = turtle.textinput("Shape", "Enter a shape: ")
+        
     user_x = turtle.numinput("X", "Enter an x coordinate: ", 0, -400, 400)
     user_y = turtle.numinput("Y", "Enter a y coordinate: ", 0, -400, 400)
     user_size = turtle.numinput("Size", "Enter a size: ")
