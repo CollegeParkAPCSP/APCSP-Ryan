@@ -43,3 +43,8 @@ print("9", sorta_sum(-3, 12)) # 9
 print("20", sorta_sum(4, 6)) # 20
 print("21", sorta_sum(14, 7)) # 21
 print("20", sorta_sum(14, 6)) # 20
+
+
+test = [1, 5, 3, 8, 9]
+
+test.count(9)
