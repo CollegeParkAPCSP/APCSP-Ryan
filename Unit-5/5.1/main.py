@@ -27,14 +27,21 @@ result_length3 = concatenate_substrings("Oh Man I love Python!")
 print("Length of Concatenated Substrings:", result_length3) # 10
 print("\n")
 
+# def remove_and_concatenate(sentence: str):
+#     i = sentence.find("is")
+    
+#     sentence = sentence[:i] + sentence[i + 2:]
+#     return len(sentence)
+
 def remove_and_concatenate(sentence: str):
     i = sentence.find("is")
     
     sentence = sentence[:i] + sentence[i + 2:]
+    sentence += "awesome"
     return len(sentence)
 
 result_length4 = remove_and_concatenate("This is an example")
-print("Length of Concatenated Substrings:", result_length4) # 16
+print("Length of Concatenated Substrings:", result_length4) # 23
 print("This includes spaces also because i didn't realize we were meant to write a case-specific function :(")
 print("\n")
 
