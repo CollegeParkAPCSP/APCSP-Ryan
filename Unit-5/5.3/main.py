@@ -50,8 +50,8 @@ def find_vowel(str, vowel):
         print("Vowel not found")
         return -1
     
-    print(str.find(vowel))
-    return str.find(vowel)
+    print(str.find(vowel) + 1)
+    return str.find(vowel) + 1
 
 find_vowel("hello", "e")
 find_vowel("blahblahblah", "a")
