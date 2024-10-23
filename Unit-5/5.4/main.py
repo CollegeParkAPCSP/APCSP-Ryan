@@ -1,5 +1,3 @@
-# using isalnum isalpha isdigit islower isupper
-
 def find_sub(string, substr):
     if string.find(substr) == -1:
         print("Substring is not in string")
